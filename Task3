@@ -1,0 +1,50 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load dataset
+df = pd.read_csv("task1_dataset.csv")
+
+# Display data
+print("===== DATASET =====")
+print(df)
+
+# 1. Salary by City - Bar Chart
+city_salary = df.groupby("City")["Salary"].mean()
+
+plt.figure(figsize=(8, 5))
+city_salary.plot(kind="bar")
+plt.title("Average Salary by City")
+plt.xlabel("City")
+plt.ylabel("Average Salary")
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+
+# 2. Gender Distribution - Pie Chart
+gender_count = df["Gender"].value_counts()
+
+plt.figure(figsize=(6, 6))
+plt.pie(gender_count, labels=gender_count.index, autopct="%1.1f%%")
+plt.title("Gender Distribution")
+plt.show()
+
+# 3. Age Distribution - Histogram
+plt.figure(figsize=(8, 5))
+plt.hist(df["Age"].dropna(), bins=5)
+plt.title("Age Distribution")
+plt.xlabel("Age")
+plt.ylabel("Number of Employees")
+plt.tight_layout()
+plt.show()
+
+# 4. Age vs Salary - Scatter Plot
+plt.figure(figsize=(8, 5))
+plt.scatter(df["Age"], df["Salary"])
+plt.title("Age vs Salary")
+plt.xlabel("Age")
+plt.ylabel("Salary")
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+
+print("\n===== TASK 3 COMPLETED =====")
